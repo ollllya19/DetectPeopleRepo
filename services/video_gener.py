@@ -18,7 +18,7 @@ class VideoGenerator:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         humans = self.human_cascade.detectMultiScale(gray, 1.9, 1)
         humanCount = len(humans)
-
+        print(humanCount)
         return humanCount
     
     def make_out_size(self):
