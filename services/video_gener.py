@@ -3,9 +3,9 @@ import cv2
 class VideoGenerator:
 
     def __init__(self, 
-            path1="./static/test1.mp4",
+            path1='./static/test1.mp4',
             path2='./static/test2.mp4', 
-            out_video_path="./static/output.mp4",
+            out_video_path='./static/output.mp4',
             classif_path='./static/haarcascade_fullbody.xml'):
         self.human_cascade = cv2.CascadeClassifier(classif_path)
         self.stream1 = cv2.VideoCapture(path1)
@@ -18,7 +18,6 @@ class VideoGenerator:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         humans = self.human_cascade.detectMultiScale(gray, 1.9, 1)
         humanCount = len(humans)
-        print(humanCount)
         return humanCount
     
     def make_out_size(self):
@@ -26,7 +25,7 @@ class VideoGenerator:
         height = int(self.stream1.get(cv2.CAP_PROP_FRAME_HEIGHT))
         fps = int(self.stream1.get(cv2.CAP_PROP_FPS))
 
-        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         self.out_video = cv2.VideoWriter(self.out_video_path, fourcc, fps, (width*2, height))
 
     def get_out_video(self, frame1, frame2):
@@ -45,7 +44,7 @@ class VideoGenerator:
 
     def get_video(self):
         if (not self.stream1.isOpened()) or (not self.stream2.isOpened()):
-            print("Error opening input video streams")
+            print('Error opening input video streams')
             
         self.make_out_size()
 
